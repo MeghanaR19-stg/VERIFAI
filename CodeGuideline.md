@@ -7,13 +7,27 @@ project-root/
   ├── i18n.config.json       # i18n manifest for supported locales and language metadata
   ├── public/
   │   └── locales/           # public/locales/{code}.json translation files
+  ├── supabase/
+  │   └── functions/
+  │       └── run-verification/   # VERIFAI compliance engine (single-file backend function)
   ├── src/
   │   ├── components/        # All reusable UI components
+  │   │   ├── layout/        # Console chrome: app shell and navigation config
+  │   │   ├── verifai/       # VERIFAI presentation components (badges, notices, Evidence Trace)
   │   │   └── ui/            # Prebuilt and custom UI components, grouped by function
   │   ├── hooks/             # Custom React hooks
   │   ├── i18n/              # i18n runtime: config.ts (entry) + util.ts (helpers)
+  │   ├── integrations/      # Generated backend client (do not edit)
   │   ├── lib/               # Utility functions and libraries
+  │   │   └── verifai/       # Domain types, credibility labels, backend access, formatting
   │   ├── pages/             # Application pages (each page in its own subdirectory)
+  │   │   ├── audit/         # Audit trail
+  │   │   ├── bids/          # Bid register, bid detail, documents, upload dialog
+  │   │   ├── dashboard/     # Command Center
+  │   │   ├── review/        # Compliance Review (primary screen)
+  │   │   ├── settings/      # Demo mode and prototype limits
+  │   │   ├── tenders/       # Tender register and tender detail
+  │   │   └── verification/  # Simulated government source checks
   │   ├── App.tsx            # Main app component, sets up route providers
   │   ├── router.tsx         # Router config, sets up routing
   │   ├── main.tsx           # Entry point for the React app

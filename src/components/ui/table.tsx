@@ -4,12 +4,16 @@ import { cn } from "@/lib/utils"
 
 const Table = React.forwardRef<
   HTMLTableElement,
-  React.HTMLAttributes<HTMLTableElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLTableElement> & { dense?: boolean }
+>(({ className, dense, ...props }, ref) => (
   <div className="relative w-full overflow-auto">
     <table
       ref={ref}
-      className={cn("w-full caption-bottom text-sm", className)}
+      className={cn(
+        "w-full caption-bottom text-sm",
+        dense && "[&_td]:px-3 [&_td]:py-2.5 [&_th]:h-10 [&_th]:px-3",
+        className
+      )}
       {...props}
     />
   </div>

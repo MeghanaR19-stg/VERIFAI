@@ -1,0 +1,1 @@
+delete from verifai_audit_events where action = 'Write access probe';
