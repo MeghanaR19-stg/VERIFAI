@@ -1,0 +1,5 @@
+alter table verifai_requirements add column if not exists project_characteristics text;
+
+update verifai_requirements set project_characteristics = 'Core network / data centre infrastructure deployment' where id = 'R-T001-02';
+update verifai_requirements set project_characteristics = 'Rooftop solar photovoltaic installation' where id = 'R-T002-02';
+update verifai_requirements set project_characteristics = 'Hospital diagnostic equipment supply and installation' where id = 'R-T003-02';

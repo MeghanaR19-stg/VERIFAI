@@ -3990,6 +3990,429 @@ export type Database = {
           },
         ]
       }
+      verifai_app_state: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      verifai_audit_events: {
+        Row: {
+          action: string
+          actor: string
+          actor_name: string
+          detail: string | null
+          entity_id: string | null
+          entity_label: string | null
+          entity_type: string
+          id: string
+          occurred_at: string
+          status: string | null
+        }
+        Insert: {
+          action: string
+          actor?: string
+          actor_name?: string
+          detail?: string | null
+          entity_id?: string | null
+          entity_label?: string | null
+          entity_type: string
+          id?: string
+          occurred_at?: string
+          status?: string | null
+        }
+        Update: {
+          action?: string
+          actor?: string
+          actor_name?: string
+          detail?: string | null
+          entity_id?: string | null
+          entity_label?: string | null
+          entity_type?: string
+          id?: string
+          occurred_at?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
+      verifai_bidders: {
+        Row: {
+          city: string | null
+          data_notice: string
+          experience_years: number
+          gst_status: string
+          gstin: string | null
+          id: string
+          iso_13485: boolean
+          name: string
+          oem_authorization: boolean
+          pan: string | null
+          registered_name: string
+          similar_projects: number
+          turnover_cr: number
+          udyam_number: string | null
+        }
+        Insert: {
+          city?: string | null
+          data_notice?: string
+          experience_years?: number
+          gst_status?: string
+          gstin?: string | null
+          id: string
+          iso_13485?: boolean
+          name: string
+          oem_authorization?: boolean
+          pan?: string | null
+          registered_name: string
+          similar_projects?: number
+          turnover_cr?: number
+          udyam_number?: string | null
+        }
+        Update: {
+          city?: string | null
+          data_notice?: string
+          experience_years?: number
+          gst_status?: string
+          gstin?: string | null
+          id?: string
+          iso_13485?: boolean
+          name?: string
+          oem_authorization?: boolean
+          pan?: string | null
+          registered_name?: string
+          similar_projects?: number
+          turnover_cr?: number
+          udyam_number?: string | null
+        }
+        Relationships: []
+      }
+      verifai_decisions: {
+        Row: {
+          comment: string | null
+          decided_at: string
+          decided_by: string
+          decision: string
+          id: string
+          submission_id: string
+        }
+        Insert: {
+          comment?: string | null
+          decided_at?: string
+          decided_by?: string
+          decision: string
+          id?: string
+          submission_id: string
+        }
+        Update: {
+          comment?: string | null
+          decided_at?: string
+          decided_by?: string
+          decision?: string
+          id?: string
+          submission_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verifai_decisions_submission_id_fkey"
+            columns: ["submission_id"]
+            referencedRelation: "verifai_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      verifai_documents: {
+        Row: {
+          confidence: number | null
+          created_at: string
+          doc_type: string
+          extracted_fields: Json | null
+          extraction_method: string
+          id: string
+          name: string
+          source_page: number | null
+          status: string
+          submission_id: string
+          uploaded_by: string
+        }
+        Insert: {
+          confidence?: number | null
+          created_at?: string
+          doc_type: string
+          extracted_fields?: Json | null
+          extraction_method?: string
+          id?: string
+          name: string
+          source_page?: number | null
+          status?: string
+          submission_id: string
+          uploaded_by?: string
+        }
+        Update: {
+          confidence?: number | null
+          created_at?: string
+          doc_type?: string
+          extracted_fields?: Json | null
+          extraction_method?: string
+          id?: string
+          name?: string
+          source_page?: number | null
+          status?: string
+          submission_id?: string
+          uploaded_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verifai_documents_submission_id_fkey"
+            columns: ["submission_id"]
+            referencedRelation: "verifai_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      verifai_evidence: {
+        Row: {
+          confidence: number | null
+          created_at: string
+          extracted_value: string | null
+          id: string
+          method: string
+          reasoning: string | null
+          requirement_id: string
+          result: string
+          rule_expression: string | null
+          source_document: string | null
+          source_page: number | null
+          submission_id: string
+        }
+        Insert: {
+          confidence?: number | null
+          created_at?: string
+          extracted_value?: string | null
+          id?: string
+          method: string
+          reasoning?: string | null
+          requirement_id: string
+          result: string
+          rule_expression?: string | null
+          source_document?: string | null
+          source_page?: number | null
+          submission_id: string
+        }
+        Update: {
+          confidence?: number | null
+          created_at?: string
+          extracted_value?: string | null
+          id?: string
+          method?: string
+          reasoning?: string | null
+          requirement_id?: string
+          result?: string
+          rule_expression?: string | null
+          source_document?: string | null
+          source_page?: number | null
+          submission_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verifai_evidence_requirement_id_fkey"
+            columns: ["requirement_id"]
+            referencedRelation: "verifai_requirements"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "verifai_evidence_submission_id_fkey"
+            columns: ["submission_id"]
+            referencedRelation: "verifai_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      verifai_requirements: {
+        Row: {
+          display_value: string
+          id: string
+          label: string
+          mandatory: boolean
+          project_characteristics: string | null
+          requirement_type: string
+          sort_order: number
+          tender_id: string
+          threshold_unit: string | null
+          threshold_value: number | null
+          verification_method: string
+        }
+        Insert: {
+          display_value: string
+          id: string
+          label: string
+          mandatory?: boolean
+          project_characteristics?: string | null
+          requirement_type: string
+          sort_order?: number
+          tender_id: string
+          threshold_unit?: string | null
+          threshold_value?: number | null
+          verification_method: string
+        }
+        Update: {
+          display_value?: string
+          id?: string
+          label?: string
+          mandatory?: boolean
+          project_characteristics?: string | null
+          requirement_type?: string
+          sort_order?: number
+          tender_id?: string
+          threshold_unit?: string | null
+          threshold_value?: number | null
+          verification_method?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verifai_requirements_tender_id_fkey"
+            columns: ["tender_id"]
+            referencedRelation: "verifai_tenders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      verifai_submissions: {
+        Row: {
+          ai_findings: Json | null
+          ai_mode: string | null
+          ai_summary: string | null
+          bidder_id: string
+          compliance_score: number | null
+          id: string
+          overall_status: string | null
+          risk_level: string | null
+          status: string
+          submitted_at: string
+          tender_id: string
+          verified_at: string | null
+        }
+        Insert: {
+          ai_findings?: Json | null
+          ai_mode?: string | null
+          ai_summary?: string | null
+          bidder_id: string
+          compliance_score?: number | null
+          id: string
+          overall_status?: string | null
+          risk_level?: string | null
+          status?: string
+          submitted_at?: string
+          tender_id: string
+          verified_at?: string | null
+        }
+        Update: {
+          ai_findings?: Json | null
+          ai_mode?: string | null
+          ai_summary?: string | null
+          bidder_id?: string
+          compliance_score?: number | null
+          id?: string
+          overall_status?: string | null
+          risk_level?: string | null
+          status?: string
+          submitted_at?: string
+          tender_id?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verifai_submissions_bidder_id_fkey"
+            columns: ["bidder_id"]
+            referencedRelation: "verifai_bidders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "verifai_submissions_tender_id_fkey"
+            columns: ["tender_id"]
+            referencedRelation: "verifai_tenders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      verifai_tenders: {
+        Row: {
+          created_at: string
+          department: string
+          id: string
+          name: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          department: string
+          id: string
+          name: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          department?: string
+          id?: string
+          name?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      verifai_verifications: {
+        Row: {
+          bidder_id: string
+          check_type: string
+          checked_at: string
+          detail: string | null
+          id: string
+          identifier: string | null
+          source_adapter: string
+          status: string
+        }
+        Insert: {
+          bidder_id: string
+          check_type: string
+          checked_at?: string
+          detail?: string | null
+          id?: string
+          identifier?: string | null
+          source_adapter: string
+          status: string
+        }
+        Update: {
+          bidder_id?: string
+          check_type?: string
+          checked_at?: string
+          detail?: string | null
+          id?: string
+          identifier?: string | null
+          source_adapter?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "verifai_verifications_bidder_id_fkey"
+            columns: ["bidder_id"]
+            referencedRelation: "verifai_bidders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
